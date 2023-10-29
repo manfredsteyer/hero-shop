@@ -1,0 +1,77 @@
+<div class="h-menu">
+    @for(group of groups(); track group) {
+    <a [routerLink]="['/products', {filter: group}]">{{group}}</a>
+    @if(!$last) { <span class="mr-5 ml-5">|</span> }
+    }
+</div>
+
+<div class="content">
+    <h1>{{product().productName}}</h1>
+    <p>
+        {{product().description}}
+    </p>
+    @if(showDetails) {
+    <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, dicta ex, beatae cumque temporibus consequatur ratione natus aspernatur facere nobis, magnam odio maiores vitae ipsa similique illo et consequuntur molestias.
+        Assumenda nihil voluptatem modi nam nisi, mollitia est ipsum quidem possimus corrupti, unde quibusdam saepe blanditiis cumque. Earum, molestias dignissimos doloremque dolor architecto numquam odio sunt, sit ad aliquid inventore.
+        Vitae modi vero iusto consequuntur. Quidem, vero error! Quo, delectus molestiae. Illo suscipit vitae, quod ex iure mollitia eligendi saepe deleniti. Deleniti quibusdam molestiae fugit et molestias voluptas, veniam unde!
+        Nulla eius magnam exercitationem molestias nemo, dignissimos maxime dicta qui, quae, vel in. Iste explicabo molestias deserunt eum consectetur sint maxime quas sit ipsa architecto dolor eos, harum culpa laudantium.
+        Minus, veritatis soluta eum alias, natus expedita tempora facilis praesentium commodi id, voluptas nulla nisi quam accusamus rerum aspernatur illum. Sequi eveniet repudiandae amet enim saepe eligendi blanditiis, dolorem distinctio!
+    </p>
+    <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, dicta ex, beatae cumque temporibus consequatur ratione natus aspernatur facere nobis, magnam odio maiores vitae ipsa similique illo et consequuntur molestias.
+        Assumenda nihil voluptatem modi nam nisi, mollitia est ipsum quidem possimus corrupti, unde quibusdam saepe blanditiis cumque. Earum, molestias dignissimos doloremque dolor architecto numquam odio sunt, sit ad aliquid inventore.
+        Vitae modi vero iusto consequuntur. Quidem, vero error! Quo, delectus molestiae. Illo suscipit vitae, quod ex iure mollitia eligendi saepe deleniti. Deleniti quibusdam molestiae fugit et molestias voluptas, veniam unde!
+        Nulla eius magnam exercitationem molestias nemo, dignissimos maxime dicta qui, quae, vel in. Iste explicabo molestias deserunt eum consectetur sint maxime quas sit ipsa architecto dolor eos, harum culpa laudantium.
+        Minus, veritatis soluta eum alias, natus expedita tempora facilis praesentium commodi id, voluptas nulla nisi quam accusamus rerum aspernatur illum. Sequi eveniet repudiandae amet enim saepe eligendi blanditiis, dolorem distinctio!
+    </p>    
+    }
+
+    @if(product().discountedPrice && product().discountMinCount) {
+    <p>
+        Regular Price: $ {{product().price | number:'1.2'}}
+    </p>
+    <p>
+        <b>Buy {{product().discountMinCount}} or more and get a discount: $ {{product().discountedPrice |
+            number:'1.2'}}</b>
+    </p>
+    }
+    @else if (product().discountedPrice && !product().discountMinCount) {
+    <p class="line-through">
+        Regular Price: $ {{product().price | number:'1.2'}}
+    </p>
+    <p>
+        <b>Discounted Price: $ {{product().discountedPrice | number:'1.2'}}</b>
+    </p>
+    }
+    @else {
+    <p>
+        Price: $ {{product().price | number:'1.2'}}
+    </p>
+    }
+
+</div>
+
+
+@if(product().productGroup) {
+<div class="ml-10">
+    <h2>Super Heroes who bought this product also boguht these ones:</h2>
+</div>
+
+    @defer(on viewport) {
+        <app-recommentations [productGroup]="product().productGroup"></app-recommentations>
+    }
+    @placeholder {
+        <app-ghost-products></app-ghost-products>
+    }
+
+    <!-- 
+    @defer(on viewport; prefetch on immediate) {
+        <app-recommentations [productGroup]="product().productGroup"></app-recommentations>
+    }
+    @placeholder {
+        <app-ghost-products></app-ghost-products>
+    } 
+    -->
+    
+}

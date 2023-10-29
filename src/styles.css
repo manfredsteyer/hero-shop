@@ -1,1 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+A {
+    cursor: pointer;
+}
+
+
+@layer utilities {
+
+    .ghost {
+        @apply text-gray-300 bg-gray-300 
+    }
+
+    b {
+        @apply text-sky-800 font-bold
+    }
+
+    p {
+        @apply mt-5 mb-5
+    }
+
+    h1 {
+        @apply text-2xl font-bold
+    }
+
+    .title {
+        @apply bg-sky-900 p-2 pl-10 text-white text-lg font-bold
+    }
+
+    .h-menu {
+        @apply bg-gray-800 p-2 pl-10 text-white
+    }
+
+    .card-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 p-10
+    }
+
+    .content {
+        @apply p-10
+    }
+
+    .card {
+        @apply bg-gray-100 rounded-lg overflow-hidden shadow-md
+    }
+
+    .card-title {
+        @apply text-xl font-semibold
+    }
+
+    .card-text {
+        @apply mt-2 text-gray-600
+    }
+
+    .card-body {
+        @apply p-4
+    }
+
+    .card-header {
+    }
+
+    .card-title {
+        @apply pl-4 pt-4
+    }
+
+    .card-footer {
+        @apply flex justify-between p-4
+    }
+
+    .btn-primary {
+        @apply px-4 py-2 bg-sky-900 text-white rounded hover:bg-sky-600
+    }
+}

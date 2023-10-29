@@ -1,0 +1,31 @@
+<div class="h-menu">
+    @for(group of groups(); track group) {
+    <a (click)="groupSelected(group)">{{group}}</a>
+    @if(!$last) { <span class="mr-5 ml-5">|</span> }
+    }
+</div>
+
+<div class="card-grid">
+
+    @for(product of products(); track product.id) {
+
+    <div class="card">
+        <h2 class="card-title">{{product.productName}}</h2>
+
+        <div class="card-body">
+            <p class="card-text">{{product.description}}</p>
+            <p>
+                Price: $ {{product.price | number:'1.2'}}
+            </p>
+        </div>
+        <div class="card-footer">
+            <button [routerLink]="['/products', product.id]" class="btn-primary">Details</button>
+        </div>
+    </div>
+
+    }
+    @empty {
+    <p class="text-lg">Sorry, we are a serious shop and<br>hence we don't have any <b>{{selectedGroup()}}s.</b></p>
+    }
+
+</div>

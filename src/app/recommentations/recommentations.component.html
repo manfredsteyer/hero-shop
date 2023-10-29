@@ -1,0 +1,44 @@
+<div class="card-grid mt-0 pt-0">
+
+@for(product of otherProductsInGroup(); track product.id) {
+    
+    @switch(mode) {
+
+        @case ('full') {
+            <div class="card">
+                <h2 class="card-title">{{product.productName}}</h2>
+        
+                <div class="card-body">
+                    <p class="card-text">{{product.description}}</p>
+                    <p>
+                        Price: $ {{product.price | number:'1.2'}}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <button [routerLink]="['/products', product.id]" class="btn-primary">Details</button>
+                </div>
+            </div>
+        }
+        @case ('small') {
+            <div class="card">
+                <h2 class="card-title">{{product.productName}}</h2>
+                <div class="card-body">
+                    <p class="card-text">{{product.description}}</p>
+                </div>
+                <div class="card-footer">
+                    <button [routerLink]="['/products', product.id]" class="btn-primary">Details</button>
+                </div>
+            </div>
+        }
+        @default {
+            <div class="card">
+                <h2 class="card-title">{{product.productName}}</h2>
+                <div class="card-footer">
+                    <button [routerLink]="['/products', product.id]" class="btn-primary">Details</button>
+                </div>
+            </div>
+        }
+    }
+}
+</div>
+
