@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, inject } from '@angular/core';
+import { Component, HOST_TAG_NAME, Input, OnChanges, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductFacade } from '../data/product.facade';
 import { RouterModule } from '@angular/router';
@@ -19,6 +19,11 @@ export class RecommentationsComponent implements OnChanges {
   @Input() mode: RecommentationsMode = 'small';
 
   otherProductsInGroup = this.facade.otherProductsInGroup;
+  host = inject(HOST_TAG_NAME);
+
+  constructor() {
+    console.log('HOST_TAG_NAME', this.host);
+  }
 
   ngOnChanges(): void {
     console.log('productGroup', this.productGroup)

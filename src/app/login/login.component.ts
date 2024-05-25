@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HOST_TAG_NAME, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { RedirectToLoginState } from '../data/redirect-to-login-state';

@@ -50,6 +50,9 @@
     </p>
     }
 
+    <input type="number" [formControl]="formControl" class="mr-2">
+    <button class="btn-primary" (click)="addToBasket()">Add to Basket</button>
+
 </div>
 
 
@@ -59,19 +62,11 @@
 </div>
 
     @defer(on viewport) {
-        <app-recommentations [productGroup]="product().productGroup"></app-recommentations>
+        <app-recommentations [productGroup]="product().productGroup">
+            <b>Book 3 or more items to get 5% discount!</b>
+        </app-recommentations>
     }
     @placeholder {
         <app-ghost-products></app-ghost-products>
     }
-
-    <!-- 
-    @defer(on viewport; prefetch on immediate) {
-        <app-recommentations [productGroup]="product().productGroup"></app-recommentations>
-    }
-    @placeholder {
-        <app-ghost-products></app-ghost-products>
-    } 
-    -->
-    
 }
