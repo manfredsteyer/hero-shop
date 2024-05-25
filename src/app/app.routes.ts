@@ -1,8 +1,10 @@
-import { RedirectCommand, Router, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, RedirectCommand, Router, Routes } from '@angular/router';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { inject } from '@angular/core';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from './auth.service';
+import { RedirectToLoginState } from './data/redirect-to-login-state';
 
 export const routes: Routes = [
     {
@@ -25,14 +27,23 @@ export const routes: Routes = [
     {
         path: 'products/:id',
         component: ProductDetailComponent,
-        canActivate: [() => {
+        canActivate: [(destination: ActivatedRouteSnapshot) => {
             const router = inject(Router);
+            const auth = inject(AuthService);
+            
+            if (auth.isAuth()) {
+                return true;
+            }
+
+            const afterLoginRedirect = destination.url.join('/');
             const urlTree = router.parseUrl('/login');
+
             return new RedirectCommand(urlTree, {
-                skipLocationChange: true,
+                // skipLocationChange: true,
                 state: {
-                    needsLogin: true
-                },
+                    needsLogin: true,
+                    afterLoginRedirect: afterLoginRedirect
+                } as RedirectToLoginState,
             });
         }]
     }

@@ -1,13 +1,19 @@
-import { ApplicationConfig } from '@angular/core';
+import { ApplicationConfig, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideClientHydration } from '@angular/platform-browser';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(
-    routes,
-    withComponentInputBinding(),
-    withViewTransitions(),
-  ), provideClientHydration()]
+  providers: [
+    provideExperimentalZonelessChangeDetection(),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withViewTransitions(),
+    ),
+    provideClientHydration(
+      // withEventReplay()
+    )
+  ]
 };
