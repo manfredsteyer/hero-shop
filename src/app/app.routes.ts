@@ -7,7 +7,11 @@ import { LoginComponent } from './login/login.component';
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'products',
+        redirectTo: () => {
+            const router = inject(Router);
+            // return 'products' // Alternative
+            return router.parseUrl('/products');
+        },
         pathMatch: 'full'
     },
     {
