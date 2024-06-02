@@ -1,0 +1,20 @@
+<div class="content">
+
+    @if (auth.isAuth()) {
+        <h1>Hi, {{auth.userName}}</h1>
+    }
+    @else {
+        <h1>Please Login in</h1>
+    }
+
+    @if(state?.needsLogin) {
+    <p>
+        You've been sent here because the requested page is only available for logged-in users.
+    </p>
+    }
+
+    <button class="btn-primary" (click)="login()">Login</button>
+    &nbsp;
+    <button class="btn-secondary" (click)="logout()">Logout</button>
+
+</div>

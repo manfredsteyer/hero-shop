@@ -1,4 +1,4 @@
-<div class="card-grid mt-0 pt-0">
+<div class="card-grid mt-0 pt-0 pb-0 mb-0">
 
 @for(product of otherProductsInGroup(); track product.id) {
     
@@ -40,5 +40,11 @@
         }
     }
 }
+
 </div>
 
+<div class="pl-10 mb-20">
+    <ng-content>
+        <b>Book today to get 5% discount!</b>
+    </ng-content>
+</div>
